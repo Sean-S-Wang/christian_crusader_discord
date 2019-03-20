@@ -16,7 +16,10 @@ client = Bot(command_prefix=BOT_PREFIX)
                 pass_context=True)
 async def smite_user(context):
     possible_responses = [
-        'That is unholy'
+        'That is unholy',
+        'I smite thee',
+        'BZZZZZZZZT',
+        'tsk tsk'
     ]
     await client.say(random.choice(possible_responses) + ", " +
                      context.message.author.mention + "!")
@@ -41,13 +44,15 @@ async def praise_user(context):
 @client.event
 async def on_ready():
     await client.change_presence(game=Game(name="with sinners"))
-    print(client.user.name + "Ready for crusading")
+    print(client.user.name + " ready for crusading!")
 
 
 @client.event
 async def on_message(message):
     bad_words = {
         'fuck': 'frick',
+        'fucker': 'fricker',
+        'motherfucker': 'motherfricker',
         'shit': 'poop',
         'bitch': 'blip',
         'hell': 'heck',
@@ -58,11 +63,13 @@ async def on_message(message):
         'dammit': 'dangit',
         'damnit': 'dangit'
     }
+    words_in_message = message.content.split()
     if message.author.bot:
         return
     for key in bad_words.keys():
-        if key in message.content:
-            await client.send_message(message.channel, 'That is unholy! I suggest you change ' + key + ' to ' + bad_words[key])
+        if key in words_in_message:
+            await client.send_message(message.channel, 'That is unholy! I suggest you change ' + key + ' to ' +
+                                      bad_words[key])
 
     await client.process_commands(message)
 
