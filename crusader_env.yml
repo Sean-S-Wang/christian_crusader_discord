@@ -19,5 +19,4 @@ dependencies:
     - discord-py==0.16.12
     - multidict==4.5.2
     - websockets==3.4
-prefix: C:\Users\wangss1\AppData\Local\Continuum\anaconda3\envs\crusader
 
