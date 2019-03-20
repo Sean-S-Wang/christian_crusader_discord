@@ -64,7 +64,7 @@ async def on_message(message):
         'damnit': 'dangit'
     }
     words_in_message = message.content.split()
-    [word.lower() for word in words_in_message]
+    words_in_message = [word.lower() for word in words_in_message]
     if message.author.bot:
         return
     for key in bad_words.keys():
