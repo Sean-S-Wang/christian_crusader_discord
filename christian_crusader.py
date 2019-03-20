@@ -14,15 +14,19 @@ client = Bot(command_prefix=BOT_PREFIX)
                 brief="Holy Smites",
                 aliases=['smite', 'smite-user'],
                 pass_context=True)
-async def smite_user(context):
+async def smite_user(context, *arg):
     possible_responses = [
         'That is unholy',
         'I smite thee',
         'BZZZZZZZZT',
         'tsk tsk'
     ]
+    if arg.__len__() == 0:
+        smite_target = context.message.author.mention
+    else:
+        smite_target = arg[0]
     await client.say(random.choice(possible_responses) + ", " +
-                     context.message.author.mention + "!")
+                     smite_target + "!")
 
 
 @client.command(name="praise_user",
@@ -30,14 +34,18 @@ async def smite_user(context):
                 brief="Praise the sun!",
                 aliases=['praise', 'praiseuser'],
                 pass_context=True)
-async def praise_user(context):
+async def praise_user(context, *arg):
     possible_responses = [
         'is the best!',
         'is awesome!',
         '... so christian right now',
         'is going to heaven!'
     ]
-    await client.say(context.message.author.mention + " " +
+    if arg.__len__() == 0:
+        praise_target = context.message.author.mention
+    else:
+        praise_target = arg[0]
+    await client.say(praise_target + " " +
                      random.choice(possible_responses))
 
 
