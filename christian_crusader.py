@@ -1,9 +1,10 @@
 from discord.ext.commands import Bot
 from discord import Game
 import random
+from BotToken import BotToken
 
-BOT_PREFIX = ("+")
-TOKEN = "NTU3NzI5Mjg2MDQ4NzEwNjY5.D3MmEw.aYERBIbNoxcwesqF6tTaxcV_ahg"
+BOT_PREFIX = "+"
+TOKEN = BotToken().token
 
 
 client = Bot(command_prefix=BOT_PREFIX)
