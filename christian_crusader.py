@@ -50,10 +50,10 @@ async def praise_user(context, *arg):
                      random.choice(possible_responses))
 
 
-@client.command(name="change_presence",
+@client.command(name="cleanse",
                 description="Changes who the crusader is playing with",
                 brief="Who should the crusader play with?",
-                aliases=['changepresence', 'change-presence'],
+                aliases=['changepresence', 'change-presence', 'change_presence'],
                 pass_context=True)
 async def change_presence(context, *arg):
     if arg.__len__() == 0:
