@@ -63,14 +63,18 @@ async def on_message(message):
         'dammit': 'dangit',
         'damnit': 'dangit'
     }
+    bad_word_count = 0
     words_in_message = message.content.split()
     words_in_message = [word.lower() for word in words_in_message]
     if message.author.bot:
         return
     for key in bad_words.keys():
         if key in words_in_message:
+            bad_word_count = bad_word_count + 1
             await client.send_message(message.channel, 'That is unholy! I suggest you change ' + key + ' to ' +
                                       bad_words[key])
+    if bad_word_count > 2:
+        await client.send_message(message.channel, 'So much sin! You cretin!')
 
     await client.process_commands(message)
 
