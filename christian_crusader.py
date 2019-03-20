@@ -49,6 +49,20 @@ async def praise_user(context, *arg):
                      random.choice(possible_responses))
 
 
+@client.command(name="change_presence",
+                description="Changes who the crusader is playing with",
+                brief="Who should the crusader play with?",
+                aliases=['changepresence', 'change-presence'],
+                pass_context=True)
+async def change_presence(context, *arg):
+    if arg.__len__() == 0:
+        target = 'sinners'
+    else:
+        target = arg[0]
+    await client.say("Seems that " + context.message.author.mention + " wants to cleanse the " + target + ". So be it!")
+    await client.change_presence(game=Game(name="with " + target))
+
+
 @client.event
 async def on_ready():
     await client.change_presence(game=Game(name="with sinners"))
@@ -60,6 +74,10 @@ async def on_message(message):
     bad_words = {
         'fuck': 'frick',
         'fucker': 'fricker',
+        'fucking': 'fricking',
+        'dick': 'duck',
+        'bitching': 'blipping',
+        'lmao': 'lmbo',
         'motherfucker': 'motherfricker',
         'shit': 'poop',
         'bitch': 'blip',
