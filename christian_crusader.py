@@ -88,7 +88,14 @@ async def on_message(message):
         'bastard': 'custard',
         'damn': 'dang',
         'dammit': 'dangit',
-        'damnit': 'dangit'
+        'damnit': 'dangit',
+        'cunt': 'punt',
+        'biatch': 'bleach',
+        'smd': 'smp',
+        'bitches': 'beaches',
+        'tit': 'bit',
+        'tits': 'bits',
+        'lmfao': 'lmfba',
     }
     bad_word_count = 0
     words_in_message = message.content.split()
