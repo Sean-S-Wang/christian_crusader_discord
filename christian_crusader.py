@@ -1,10 +1,12 @@
 from discord.ext.commands import Bot
 from discord import Game
 import random
-from BotToken import BotToken
+from pathlib import Path
+
 
 BOT_PREFIX = "+"
-TOKEN = BotToken().token
+token_config = open(Path("BotToken.config"))
+TOKEN = token_config.readline().split()[0]
 
 
 client = Bot(command_prefix=BOT_PREFIX)

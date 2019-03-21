@@ -1,6 +1,7 @@
 # Seans Stuff
 /.idea
 BotToken.py
+BotToken.config
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
