@@ -7,5 +7,5 @@ Click this link to add this bot to your server:
 Bot Prefix is +, because crosses
 
 # Setting up python environment
-I use Anaconda to set up my environments. You can do:  
+I use [Anaconda](https://www.anaconda.com/distribution/#download-section) to set up my environments. You can do:  
 `conda env create -f crusader.yml`
