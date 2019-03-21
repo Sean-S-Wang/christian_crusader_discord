@@ -8,4 +8,4 @@ Bot Prefix is +, because crosses
 
 # Setting up python environment
 I use [Anaconda](https://www.anaconda.com/distribution/#download-section) to set up my environments. You can do:  
-`conda env create -f crusader.yml`
+`conda env create -f crusader_env.yml`
