@@ -2,6 +2,7 @@ from discord.ext.commands import Bot
 from discord import Game
 import random
 from pathlib import Path
+from profanity_check import predict
 
 
 BOT_PREFIX = "+"
@@ -99,16 +100,33 @@ async def on_message(message):
         'tits': 'bits',
         'lmfao': 'lmfba',
     }
+    possible_retorts = [
+        ', you vile creature....',
+        ', you forget your place!',
+        ', disgusting...',
+        ', do you kiss your mother with that mouth?',
+        ', may you rot in heck!',
+        ', may Gosh have mercy on your soul...'
+    ]
     bad_word_count = 0
+    tricked = True
     words_in_message = message.content.split()
     words_in_message = [word.lower() for word in words_in_message]
+    prediction = predict([message.content])
     if message.author.bot:
         return
     for key in bad_words.keys():
         if key in words_in_message:
+            if tricked is True:
+                tricked = False
             bad_word_count = bad_word_count + 1
-            await client.send_message(message.channel, 'That is unholy! I suggest you change ' + key + ' to ' +
+            await client.send_message(message.channel, message.author.mention + random.choice(possible_retorts) +
+                                      ' I suggest you change ' + key + ' to ' +
                                       bad_words[key])
+    if prediction == [1] and tricked is True:
+        bad_word_count = bad_word_count + 1
+        await client.send_message(message.channel, message.author.mention + random.choice(possible_retorts))
+
     if bad_word_count > 2:
         await client.send_message(message.channel, 'So much sin! You cretin!')
 
