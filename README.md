@@ -15,7 +15,7 @@ You can also set up the environment via pip:
 
 # Running the bot
 * Create a text file called BotToken.config: (i.e. `vim BotToken.config`)
-* Copy/Paste your bot private bot token into this file. You can follow [this](https://discordpy.readthedocs.io/en/rewrite/discord.html) tutorial if you don't know how
+* Copy/Paste your bot private bot token into this file. You can follow [this](https://discordpy.readthedocs.io/en/rewrite/discord.html) tutorial if you don't know how to find your bot token
 * If you've set up your python environment correctly, running the bot should be as simple as:  
 `python christian_crusader.py`
 * You should see `crusader now ready for crusading!` display in the terminal if your bot is running successfully.
