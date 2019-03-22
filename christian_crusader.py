@@ -139,9 +139,18 @@ async def on_message(message):
         ', may you rot in heck!',
         ', may Gosh have mercy on your soul...'
     ]
+    message_string = message.content
+    # regex pattern for stripping out non-alphanumeric and non-spaces
+    pattern = re.compile(r"([^\s\w]|_)+")
+    # Initialize bad word count
     bad_word_count = 0
-    words_in_message = message.content.split()
+    # Take out everything except alpha-numeric and spaces
+    message_string = pattern.sub('', message_string)
+    # Split string into individual words
+    words_in_message = message_string.split()
+    # Set to lowercase
     words_in_message = [word.lower() for word in words_in_message]
+    # Don't respond to yourself
     if message.author.bot:
         return
     for key in bad_words.keys():
