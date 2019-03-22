@@ -5,7 +5,7 @@ from pathlib import Path
 
 
 BOT_PREFIX = "+"
-token_config = open(str(Path("BotToken.config").absolute())
+token_config = open(str(Path("BotToken.config").absolute()))
 TOKEN = token_config.readline().split()[0]
 
 
@@ -127,6 +127,8 @@ async def on_message(message):
         'tit': 'bit',
         'tits': 'bits',
         'lmfao': 'lmfba',
+        'whore': 'princess',
+        'slut': 'butt'
     }
     possible_retorts = [
         ', you vile creature....',
@@ -143,8 +145,6 @@ async def on_message(message):
         return
     for key in bad_words.keys():
         if key in words_in_message:
-            if tricked is True:
-                tricked = False
             bad_word_count = bad_word_count + 1
             await client.send_message(message.channel, message.author.mention + random.choice(possible_retorts) +
                                       ' I suggest you change ' + key + ' to ' +
