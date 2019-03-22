@@ -7,8 +7,15 @@ Click this link to add this bot to your server:
 Bot Prefix is +, because crosses
 
 # Setting up python environment
-I use [Anaconda](https://www.anaconda.com/distribution/#download-section) to set up my environments. You can do:  
-`conda env create -f crusader_env.yml`
+I use [anaconda](https://www.anaconda.com/distribution/#download-section) to set up my environments. You can do:
+`conda env create -f environment.yml`
 
 You can also set up the environment via pip:
 `pip install -r requirements.txt`
+
+# Running the bot
+* Create a text file called BotToken.config: (i.e. `vim BotToken.config`)
+* Copy/Paste your bot private bot token into this file. You can follow [this](https://discordpy.readthedocs.io/en/rewrite/discord.html) tutorial if you don't know how
+* If you've set up your python environment correctly, running the bot should be as simple as:  
+`python christian_crusader.py`
+* You should see `crusader now ready for crusading!` display in the terminal if your bot is running successfully.
