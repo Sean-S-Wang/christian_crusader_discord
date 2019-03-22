@@ -25,12 +25,25 @@ async def smite_user(context, *arg):
         'BZZZZZZZZT',
         'tsk tsk'
     ]
+    smite_target = ''
+    arg_count = 0
     if arg.__len__() == 0:
         smite_target = context.message.author.mention
-    else:
+        await client.say(random.choice(possible_responses) + ", " +
+                         smite_target + "!")
+    elif arg.__len__() == 1:
         smite_target = arg[0]
-    await client.say(random.choice(possible_responses) + ", " +
-                     smite_target + "!")
+        await client.say(random.choice(possible_responses) + ", " +
+                         smite_target + "!")
+    else:
+        for current_target in arg:
+            arg_count = arg_count + 1
+            if arg_count == arg.__len__():
+                smite_target = smite_target + 'and ' + current_target
+            else:
+                smite_target = smite_target + current_target + ', '
+        await client.say(random.choice(possible_responses) + ", " +
+                         smite_target + "!")
 
 
 @client.command(name="praise_user",
@@ -40,17 +53,30 @@ async def smite_user(context, *arg):
                 pass_context=True)
 async def praise_user(context, *arg):
     possible_responses = [
-        'is the best!',
-        'is awesome!',
+        'the best!',
+        'awesome!',
         '... so christian right now',
-        'is going to heaven!'
+        'going to heaven!'
     ]
+    praise_target = ''
+    arg_count = 0
     if arg.__len__() == 0:
         praise_target = context.message.author.mention
-    else:
+        await client.say(praise_target + " is " +
+                         random.choice(possible_responses))
+    elif arg.__len__() == 1:
         praise_target = arg[0]
-    await client.say(praise_target + " " +
-                     random.choice(possible_responses))
+        await client.say(praise_target + " is " +
+                         random.choice(possible_responses))
+    else:
+        for current_target in arg:
+            arg_count = arg_count + 1
+            if arg_count == arg.__len__():
+                praise_target = praise_target + 'and ' + current_target
+            else:
+                praise_target = praise_target + current_target + ', '
+        await client.say(praise_target + " are " +
+                         random.choice(possible_responses))
 
 
 @client.command(name="cleanse",
@@ -59,10 +85,12 @@ async def praise_user(context, *arg):
                 aliases=['changepresence', 'change-presence', 'change_presence'],
                 pass_context=True)
 async def change_presence(context, *arg):
+    target = ''
     if arg.__len__() == 0:
         target = 'sinners'
     else:
-        target = arg[0]
+        for current_word in arg:
+            target = target + ' ' + current_word
     await client.say("Seems that " + context.message.author.mention + " wants to cleanse the " + target + ". So be it!")
     await client.change_presence(game=Game(name="with " + target))
 
