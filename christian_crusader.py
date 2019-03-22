@@ -2,11 +2,10 @@ from discord.ext.commands import Bot
 from discord import Game
 import random
 from pathlib import Path
-from profanity_check import predict
 
 
 BOT_PREFIX = "+"
-token_config = open(Path("BotToken.config"))
+token_config = open(str(Path("BotToken.config").absolute())
 TOKEN = token_config.readline().split()[0]
 
 
@@ -105,6 +104,7 @@ async def on_ready():
 async def on_message(message):
     bad_words = {
         'fuck': 'frick',
+        'fück': 'frick',
         'fucker': 'fricker',
         'fucking': 'fricking',
         'dick': 'duck',
@@ -137,10 +137,8 @@ async def on_message(message):
         ', may Gosh have mercy on your soul...'
     ]
     bad_word_count = 0
-    tricked = True
     words_in_message = message.content.split()
     words_in_message = [word.lower() for word in words_in_message]
-    prediction = predict([message.content])
     if message.author.bot:
         return
     for key in bad_words.keys():
@@ -151,10 +149,6 @@ async def on_message(message):
             await client.send_message(message.channel, message.author.mention + random.choice(possible_retorts) +
                                       ' I suggest you change ' + key + ' to ' +
                                       bad_words[key])
-    if prediction == [1] and tricked is True:
-        bad_word_count = bad_word_count + 1
-        await client.send_message(message.channel, message.author.mention + random.choice(possible_retorts))
-
     if bad_word_count > 2:
         await client.send_message(message.channel, 'So much sin! You cretin!')
 
