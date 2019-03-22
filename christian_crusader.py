@@ -2,6 +2,7 @@ from discord.ext.commands import Bot
 from discord import Game
 import random
 from pathlib import Path
+import re
 
 
 BOT_PREFIX = "+"
