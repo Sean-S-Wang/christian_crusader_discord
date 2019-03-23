@@ -106,8 +106,8 @@ async def on_message(message):
     bad_words = {
         'fuck': 'frick',
         'fück': 'frick',
-        'fucker': 'fricker',
-        'fucking': 'fricking',
+        'fucker': 'falcon',
+        'fucking': 'falconing',
         'dick': 'duck',
         'bitching': 'blipping',
         'lmao': 'lmbo',
@@ -129,7 +129,8 @@ async def on_message(message):
         'tits': 'bits',
         'lmfao': 'lmfba',
         'whore': 'princess',
-        'slut': 'butt'
+        'slut': 'butt',
+        'shitter': 'digger'
     }
     possible_retorts = [
         ', you vile creature....',
