@@ -26,19 +26,23 @@ async def smite_user(context, *arg):
         'tsk tsk'
     ]
     smite_target = ''
+    valid_argument_list = []
     arg_count = 0
-    if arg.__len__() == 0:
+    for argument in arg:
+        if argument[1] is "@":
+            valid_argument_list.append(argument)
+    if valid_argument_list.__len__() == 0:
         smite_target = context.message.author.mention
         await client.say(random.choice(possible_responses) + ", " +
                          smite_target + "!")
-    elif arg.__len__() == 1:
-        smite_target = arg[0]
+    elif valid_argument_list.__len__() == 1:
+        smite_target = valid_argument_list[0]
         await client.say(random.choice(possible_responses) + ", " +
                          smite_target + "!")
     else:
-        for current_target in arg:
+        for current_target in valid_argument_list:
             arg_count = arg_count + 1
-            if arg_count == arg.__len__():
+            if arg_count == valid_argument_list.__len__():
                 smite_target = smite_target + 'and ' + current_target
             else:
                 smite_target = smite_target + current_target + ', '
@@ -59,19 +63,23 @@ async def praise_user(context, *arg):
         'going to heaven!'
     ]
     praise_target = ''
+    valid_argument_list = []
     arg_count = 0
-    if arg.__len__() == 0:
+    for argument in arg:
+        if argument[1] is "@":
+            valid_argument_list.append(argument)
+    if valid_argument_list.__len__() == 0:
         praise_target = context.message.author.mention
         await client.say(praise_target + " is " +
                          random.choice(possible_responses))
-    elif arg.__len__() == 1:
-        praise_target = arg[0]
+    elif valid_argument_list.__len__() == 1:
+        praise_target = valid_argument_list[0]
         await client.say(praise_target + " is " +
                          random.choice(possible_responses))
     else:
-        for current_target in arg:
+        for current_target in valid_argument_list:
             arg_count = arg_count + 1
-            if arg_count == arg.__len__():
+            if arg_count == valid_argument_list.__len__():
                 praise_target = praise_target + 'and ' + current_target
             else:
                 praise_target = praise_target + current_target + ', '
