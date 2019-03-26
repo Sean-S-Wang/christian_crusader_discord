@@ -3,6 +3,7 @@ from discord import Game
 import random
 from pathlib import Path
 import re
+import json
 
 
 BOT_PREFIX = "+"
@@ -94,13 +95,20 @@ async def praise_user(context, *arg):
                 pass_context=True)
 async def change_presence(context, *arg):
     target = ''
+    bad_words = json.load(open("bad_words.txt"))
     if arg.__len__() == 0:
         target = 'sinners'
     else:
         for current_word in arg:
-            target = target + ' ' + current_word
-    await client.say("Seems that " + context.message.author.mention + " wants to cleanse the " + target + ". So be it!")
-    await client.change_presence(game=Game(name="with " + target))
+            if current_word in bad_words.keys():
+                await client.say(
+                    "Do you take me for a fool, " + context.message.author.mention + "?")
+                return
+            else:
+                target = target + ' ' + current_word
+                await client.say("Seems that " + context.message.author.mention + " wants to cleanse the " + target +
+                                 ". So be it!")
+                await client.change_presence(game=Game(name="with " + target))
 
 
 @client.event
@@ -111,35 +119,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    bad_words = {
-        'fuck': 'frick',
-        'fück': 'frick',
-        'fucker': 'falcon',
-        'fucking': 'falconing',
-        'dick': 'duck',
-        'bitching': 'blipping',
-        'lmao': 'lmbo',
-        'motherfucker': 'motherfricker',
-        'shit': 'poop',
-        'bitch': 'blip',
-        'hell': 'heck',
-        'ass': 'butt',
-        'asshole': 'butthole',
-        'bastard': 'custard',
-        'damn': 'dang',
-        'dammit': 'dangit',
-        'damnit': 'dangit',
-        'cunt': 'punt',
-        'biatch': 'bleach',
-        'smd': 'smp',
-        'bitches': 'beaches',
-        'tit': 'bit',
-        'tits': 'bits',
-        'lmfao': 'lmfba',
-        'whore': 'princess',
-        'slut': 'butt',
-        'shitter': 'digger'
-    }
+    bad_words = json.load(open("bad_words.txt"))
     possible_retorts = [
         ', you vile creature....',
         ', you forget your place!',
