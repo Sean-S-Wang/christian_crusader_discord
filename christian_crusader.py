@@ -106,9 +106,9 @@ async def change_presence(context, *arg):
                 return
             else:
                 target = target + ' ' + current_word
-                await client.say("Seems that " + context.message.author.mention + " wants to cleanse the " + target +
-                                 ". So be it!")
-                await client.change_presence(game=Game(name="with " + target))
+    await client.say("Seems that " + context.message.author.mention + " wants to cleanse the " + target +
+                     ". So be it!")
+    await client.change_presence(game=Game(name="with " + target))
 
 
 @client.event
