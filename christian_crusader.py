@@ -130,7 +130,7 @@ async def on_message(message):
     ]
     message_string = message.content
     # regex pattern for stripping out non-alphanumeric and non-spaces
-    pattern = re.compile(r"([^\s\w]|_)+")
+    pattern = re.compile(r"([^\s\w^']|_)+")
     # Initialize bad word count
     bad_word_count = 0
     # Take out everything except alpha-numeric and spaces
