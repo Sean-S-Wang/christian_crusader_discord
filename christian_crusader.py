@@ -95,6 +95,8 @@ async def praise_user(context, *arg):
                 pass_context=True)
 async def change_presence(context, *arg):
     target = ''
+    if context.message.author.display_name == 'scott' and context.message.author.discriminator == '1292':
+        return
     bad_words = json.load(open("bad_words.txt"))
     if arg.__len__() == 0:
         target = 'sinners'
